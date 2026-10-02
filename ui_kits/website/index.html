@@ -1,0 +1,39 @@
+<!-- @dsCard group="Website" viewport="1440x900" name="MEXTAS — sitio web" subtitle="Homepage completa con overlays de servicio, caso, perfil, artículo, búsqueda y consulta" -->
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MEXTAS — Despacho Jurídico</title>
+<link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="kit.css"><style>@keyframes mxFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}</style>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script><script src="data.js"></script></head><body><div id="root"></div>
+<script type="text/babel" src="Chrome.jsx"></script><script type="text/babel" src="Hero.jsx"></script><script type="text/babel" src="Sections.jsx"></script><script type="text/babel" src="Overlays.jsx"></script><script type="text/babel" src="Footer.jsx"></script>
+<script type="text/babel">
+const {Button:MxButton,Icon:MxIcon}=window.MEXTASDesignSystem_cebba9;
+// Hash routes simulate /servicios/[slug], /casos/[slug], /equipo/[slug], /blog/[slug]
+const KIND={service:["servicios","services"],case:["casos","cases"],team:["equipo","team"],article:["blog","articles"]};
+function parse(){const m=location.hash.match(/^#\/(servicios|casos|equipo|blog)\/([\w-]+)/);if(!m)return null;const k=Object.keys(KIND).find(x=>KIND[x][0]===m[1]);const it=window.MX_DATA[KIND[k][1]].find(x=>x.slug===m[2]);return it?{kind:k,item:it}:null}
+function App(){
+  useReveal();
+  const [ov,setOv]=React.useState(parse());const [cons,setCons]=React.useState(false);const [srch,setSrch]=React.useState(false);const [act,setAct]=React.useState("inicio");
+  React.useEffect(()=>{const f=()=>setOv(parse());window.addEventListener("hashchange",f);const s=()=>setSrch(true);window.addEventListener("mx-search",s);
+    const ids=["inicio","nosotros","servicios","casos","equipo","blog","contacto"];const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&setAct(e.target.id)),{rootMargin:"-45% 0px -50% 0px"});ids.forEach(i=>{const el=document.getElementById(i);el&&io.observe(el)});
+    return()=>{window.removeEventListener("hashchange",f);window.removeEventListener("mx-search",s);io.disconnect()}},[]);
+  const open=(kind,item)=>{history.pushState(null,"","#/"+KIND[kind][0]+"/"+item.slug);setOv({kind,item})};
+  const close=()=>{history.pushState(null,"",location.pathname+location.search);setOv(null)};
+  const consult=()=>{setOv(null);history.replaceState(null,"",location.pathname+location.search);setCons(true)};
+  const O=ov||{};
+  return <React.Fragment>
+    <Header onConsult={()=>setCons(true)} onSearch={()=>setSrch(true)} active={act}/>
+    <main><Hero onConsult={()=>setCons(true)}/><Services onOpen={x=>open("service",x)}/><Cases onOpen={x=>open("case",x)}/><Why/><Process/><Practice onOpen={x=>open("service",x)}/><Team onOpen={x=>open("team",x)}/><Blog onOpen={x=>open("article",x)}/><Contact onConsult={()=>setCons(true)}/></main>
+    <Footer/>
+    <a href="https://wa.me/525512345678" aria-label="Escríbenos por WhatsApp" style={{position:"fixed",right:24,bottom:24,zIndex:40,display:"flex",alignItems:"center",gap:12,padding:"12px 18px 12px 14px",background:"rgba(9,11,15,.88)",backdropFilter:"blur(10px)",border:"1px solid var(--line-dark-strong)",color:"var(--fg-on-dark)",fontSize:11,fontWeight:600,letterSpacing:".16em",textTransform:"uppercase"}}><span style={{width:30,height:30,border:"1px solid var(--accent)",borderRadius:"50%",display:"grid",placeItems:"center",color:"var(--accent)"}}><MxIcon name="message-circle" size={15}/></span><span className="mx-hide-md">WhatsApp</span></a>
+    <ServiceDetail item={O.kind==="service"?O.item:null} onClose={close} onConsult={consult}/>
+    <CaseDetail item={O.kind==="case"?O.item:null} onClose={close} onConsult={consult}/>
+    <Profile item={O.kind==="team"?O.item:null} onClose={close} onConsult={consult}/>
+    <Article item={O.kind==="article"?O.item:null} onClose={close}/>
+    <Consulta open={cons} onClose={()=>setCons(false)}/>
+    <SearchOverlay open={srch} onClose={()=>setSrch(false)} onPick={open}/>
+  </React.Fragment>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script></body></html>

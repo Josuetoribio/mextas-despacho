@@ -1,0 +1,16 @@
+.mx-wrap{max-width:1280px;margin:0 auto;padding:0 var(--gutter)}
+.mx-grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.mx-split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.6fr);gap:clamp(32px,5vw,72px);align-items:start}
+.mx-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.mx-trust>*{padding:34px 28px;border-left:1px solid var(--line-dark)}.mx-trust>*:first-child{border-left:none;padding-left:0}
+.mx-nav a{position:relative}.mx-nav a::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-base) var(--ease-institutional)}.mx-nav a:hover::after,.mx-nav a[data-active="true"]::after{transform:scaleX(1)}
+.mx-reveal{opacity:0;transform:translateY(22px);transition:opacity 1s var(--ease-reveal),transform 1s var(--ease-reveal)}.mx-reveal.in{opacity:1;transform:none}
+.mx-why{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 32px}
+.mx-process{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;position:relative}
+.mx-contact{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.2fr) minmax(0,1fr)}
+.mx-footer{display:grid;grid-template-columns:1.6fr 1fr 1.2fr 1fr 1.5fr;gap:32px}
+.mx-burger{display:none}
+@keyframes mxKen{from{transform:scale(1.06)}to{transform:scale(1)}}
+@media (max-width:1100px){.mx-nav{display:none!important}.mx-burger{display:grid!important}.mx-split{grid-template-columns:1fr}.mx-footer{grid-template-columns:1fr 1fr 1fr}.mx-contact{grid-template-columns:1fr 1fr}.mx-contact>:nth-child(2){display:none}}
+@media (max-width:860px){.mx-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}.mx-trust{grid-template-columns:1fr 1fr}.mx-trust>*{border-left:none;padding-left:0;border-top:1px solid var(--line-dark)}.mx-process{grid-template-columns:1fr}.mx-why>*{grid-column:1/-1!important}.mx-hide-md{display:none!important}}
+@media (max-width:600px){.mx-hide-sm{display:none!important}.mx-hscroll{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory}.mx-hscroll>*{scroll-snap-align:start}.mx-trust{grid-template-columns:1fr}.mx-contact{grid-template-columns:1fr}.mx-footer{grid-template-columns:1fr 1fr}.mx-cta-row{flex-direction:column;align-items:stretch!important}}

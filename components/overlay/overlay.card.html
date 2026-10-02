@@ -1,0 +1,15 @@
+<!-- @dsCard group="Components" viewport="700x320" name="Overlay — Modal" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><style>body{margin:0;padding:24px;background:var(--bg-light)}</style>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="r"></div>
+<script type="text/babel">
+const {Button,Eyebrow,Logo,Icon,SectionHeading,ServiceCard,CaseCard,TeamCard,TrustItem,TextField,ChoiceTile,Modal}=window.MEXTASDesignSystem_cebba9;
+function App(){const[o,setO]=React.useState(false);const[v,setV]=React.useState("dialog");return <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+{["dialog","drawer","fullscreen"].map(x=><Button key={x} tone="light" variant="outline" size="sm" onClick={()=>{setV(x);setO(true)}}>{"Abrir "+x}</Button>)}
+<div style={{width:"100%",padding:28,border:"1px solid var(--line-light)",background:"var(--bg-light-raised)",position:"relative",boxShadow:"var(--shadow-modal)"}}><Eyebrow>Derecho corporativo</Eyebrow><h3 style={{fontFamily:"var(--font-serif)",fontWeight:400,fontSize:30,margin:"14px 0 8px"}}>Protegemos la estructura jurídica de tu empresa.</h3><p style={{color:"var(--fg-on-light-muted)",margin:0}}>Vista estática del panel — usa los botones para ver la transición.</p></div>
+<Modal open={o} onClose={()=>setO(false)} variant={v} width={560}><div style={{padding:48}}><Eyebrow>Modal · {v}</Eyebrow><h3 style={{fontFamily:"var(--font-serif)",fontWeight:400,fontSize:34}}>Consultar con un especialista</h3></div></Modal></div>}
+ReactDOM.createRoot(document.getElementById("r")).render(<App/>);
+</script></body></html>

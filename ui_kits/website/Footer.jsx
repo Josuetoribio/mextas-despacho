@@ -1,0 +1,34 @@
+(()=>{
+const {Button,Logo,Icon,Eyebrow}=window.MEXTASDesignSystem_cebba9;
+function Contact({onConsult}){
+  const item=(i,c)=><div style={{display:"flex",gap:18,padding:"16px 0",borderBottom:"1px solid var(--line-dark)"}}><Icon name={i} size={18} color="var(--accent)"/><div style={{fontSize:14,lineHeight:1.6}}>{c}</div></div>;
+  return <section id="contacto" data-screen-label="Contacto" style={{background:"var(--carbon-950)",color:"var(--fg-on-dark)"}}><div className="mx-contact">
+    <div className="mx-reveal" style={{padding:"var(--section-y) var(--gutter)",display:"flex",flexDirection:"column",justifyContent:"center"}}><Eyebrow tone="dark" style={{color:"var(--accent)"}}>¿Tienes un caso en mente?</Eyebrow>
+      <h2 style={{fontFamily:"var(--font-serif)",fontWeight:400,fontSize:"var(--fs-h2)",lineHeight:1.15,margin:"22px 0 36px"}}>Hablemos y encontremos la mejor solución legal.</h2>
+      <div className="mx-cta-row" style={{display:"flex",gap:14,flexWrap:"wrap"}}><Button onClick={onConsult}>Agendar consulta</Button><Button variant="outline" icon="message-circle" arrow={false} as="a" href="https://wa.me/525512345678?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta.">WhatsApp</Button></div></div>
+    <div style={{position:"relative",minHeight:420,clipPath:"polygon(10% 0,100% 0,100% 100%,10% 100%,0 50%)"}}><img src="../../assets/img/sala-de-juntas.png" alt="Sala de juntas de MEXTAS con vista a la ciudad" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}/></div>
+    <div style={{padding:"calc(var(--section-y) * .8) var(--gutter)",background:"var(--bg-dark-raised)"}}>
+      {item("phone",<a href="tel:+525512345678">(55) 1234 5678</a>)}{item("mail",<a href="mailto:hola@mextas.com.mx">hola@mextas.com.mx</a>)}{item("map-pin",<span>Av. Reforma 123, Piso 10<br/>Col. Juárez, 06600<br/>Ciudad de México, México</span>)}{item("clock",<span>Lun – Vie: 9:00 am – 6:00 pm</span>)}
+      <div aria-label="Mapa estilizado: Paseo de la Reforma, Col. Juárez" role="img" style={{marginTop:24,height:140,position:"relative",border:"1px solid var(--line-dark)",overflow:"hidden",background:"repeating-linear-gradient(90deg,transparent 0 39px,rgba(243,240,234,.05) 39px 40px),repeating-linear-gradient(0deg,transparent 0 39px,rgba(243,240,234,.05) 39px 40px)"}}>
+        <div style={{position:"absolute",left:"-10%",right:"-10%",top:"55%",height:10,background:"rgba(243,240,234,.10)",transform:"rotate(-18deg)"}}></div>
+        <div style={{position:"absolute",left:"42%",top:"-20%",bottom:"-20%",width:5,background:"rgba(243,240,234,.07)",transform:"rotate(24deg)"}}></div>
+        <div style={{position:"absolute",left:"52%",top:"44%"}}><span style={{display:"block",width:10,height:10,borderRadius:"50%",background:"var(--accent)",boxShadow:"0 0 0 6px rgba(180,144,94,.18),0 0 0 14px rgba(180,144,94,.08)"}}></span></div>
+        <div style={{position:"absolute",left:12,bottom:10,fontSize:9.5,letterSpacing:".22em",color:"var(--fg-on-dark-muted)"}}>PASEO DE LA REFORMA · JUÁREZ</div></div>
+    </div></div></section>;
+}
+function Footer(){
+  const [e,setE]=React.useState("");const [s,setS]=React.useState("idle");
+  const sub=ev=>{ev.preventDefault();if(!/.+@.+\..+/.test(e)){setS("err");return}setS("busy");setTimeout(()=>setS("ok"),1200)};
+  const col=(t,l)=><div><div style={{fontSize:10.5,fontWeight:600,letterSpacing:".22em",textTransform:"uppercase",marginBottom:18}}>{t}</div><ul style={{listStyle:"none",margin:0,padding:0,display:"grid",gap:9}}>{l.map(x=><li key={x}><a href="#" style={{fontSize:13,color:"var(--fg-on-light-muted)"}}>{x}</a></li>)}</ul></div>;
+  return <footer style={{background:"var(--bg-light)",padding:"72px 0 32px",borderTop:"1px solid var(--line-light)"}}><div className="mx-wrap">
+    <div className="mx-footer"><div><Logo tone="light" size={26}/><p style={{fontSize:13,color:"var(--fg-on-light-muted)",maxWidth:260,margin:"22px 0"}}>Asesoría legal estratégica con un enfoque humano y resultados reales.</p><div style={{display:"flex",gap:8}}>{["linkedin","facebook","instagram"].map(n=><a key={n} href="#" aria-label={n} style={{width:36,height:36,border:"1px solid var(--line-light)",display:"grid",placeItems:"center",color:"var(--fg-on-light)"}}><Icon name={n} size={15}/></a>)}</div></div>
+      {col("Navegación",["Inicio","Nosotros","Servicios","Casos","Equipo","Blog","Contacto"])}{col("Servicios",["Derecho Corporativo","Fusiones y Adquisiciones","Litigio","Propiedad Intelectual","Cumplimiento Normativo"])}{col("Recursos",["Blog","Guías Legales","Publicaciones","Políticas","Aviso de Privacidad"])}
+      <div><div style={{fontSize:10.5,fontWeight:600,letterSpacing:".22em",textTransform:"uppercase",marginBottom:18}}>Boletín</div><p style={{fontSize:13,color:"var(--fg-on-light-muted)",margin:"0 0 18px"}}>Recibe información legal relevante para tu negocio.</p>
+        {s==="ok"?<div style={{display:"flex",gap:10,alignItems:"center",fontSize:13,padding:"13px 0",borderBottom:"1px solid var(--accent)"}}><Icon name="check" size={16} color="var(--accent-on-light)"/>Suscripción confirmada.</div>:
+        <form onSubmit={sub} style={{display:"flex",border:"1px solid "+(s==="err"?"var(--error-600)":"var(--line-light-strong)")}}><input aria-label="Tu correo electrónico" value={e} onChange={x=>{setE(x.target.value);setS("idle")}} placeholder="Tu correo electrónico" style={{flex:1,minWidth:0,border:"none",background:"var(--bg-light-raised)",padding:"0 14px",fontFamily:"inherit",fontSize:13,outline:"none"}}/><button aria-label="Suscribirme" style={{width:48,height:46,border:"none",background:"var(--carbon-800)",color:"var(--fg-on-dark)",cursor:"pointer",display:"grid",placeItems:"center"}}>{s==="busy"?<span style={{fontSize:11}}>···</span>:<Icon name="arrow-right" size={16}/>}</button></form>}
+        {s==="err"&&<div style={{fontSize:12,color:"var(--error-600)",marginTop:6}}>Ingresa un correo válido.</div>}</div></div>
+    <div style={{marginTop:56,paddingTop:22,borderTop:"1px solid var(--line-light)",display:"flex",justifyContent:"space-between",gap:16,flexWrap:"wrap",fontSize:12,color:"var(--fg-on-light-muted)"}}><span>© 2026 MEXTAS Despacho Jurídico. Todos los derechos reservados.</span><span>Aviso de Privacidad · Términos</span></div>
+  </div></footer>;
+}
+Object.assign(window,{Contact,Footer});
+})();

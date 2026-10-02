@@ -1,0 +1,8 @@
+:root{
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;--space-9:96px;--space-10:128px;
+--section-y:clamp(72px,9vw,128px);/* @kind spacing */--gutter:clamp(20px,4vw,56px);/* @kind spacing */--container:1280px;/* @kind spacing */
+--radius-0:0;--radius-1:2px;--radius-2:4px;
+--border-hair:1px;/* @kind spacing */
+--shadow-lift:0 18px 40px -24px rgba(7,9,12,.35);--shadow-modal:0 40px 120px -30px rgba(0,0,0,.6);
+--header-h:84px;/* @kind spacing */--header-h-compact:68px;/* @kind spacing */
+}

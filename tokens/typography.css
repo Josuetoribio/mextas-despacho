@@ -1,0 +1,9 @@
+:root{
+--font-serif:"Newsreader","Times New Roman",serif;
+--font-sans:"Manrope","Helvetica Neue",Arial,sans-serif;
+--fs-display:clamp(44px,5.2vw,76px);/* @kind font */--fs-h1:clamp(36px,3.8vw,56px);/* @kind font */--fs-h2:clamp(30px,2.9vw,42px);/* @kind font */--fs-h3:24px;/* @kind font */--fs-h4:19px;/* @kind font */
+--fs-body-lg:18px;/* @kind font */--fs-body:15px;/* @kind font */--fs-small:13px;/* @kind font */--fs-micro:11px;/* @kind font */
+--lh-tight:1.08;/* @kind font */--lh-heading:1.15;/* @kind font */--lh-body:1.65;/* @kind font */
+--fw-light:300;/* @kind font */--fw-regular:400;/* @kind font */--fw-medium:500;/* @kind font */--fw-semibold:600;/* @kind font */
+--tracking-eyebrow:.28em;/* @kind font */--tracking-nav:.14em;/* @kind font */--tracking-button:.16em;/* @kind font */--tracking-logo:.42em;/* @kind font */
+}
