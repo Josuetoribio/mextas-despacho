@@ -1,6 +1,6 @@
 (()=>{
 const {Button,Logo,Icon}=window.MEXTASDesignSystem_cebba9;
-const NAV=[["inicio","Inicio"],["nosotros","Nosotros"],["servicios","Servicios"],["casos","Casos"],["equipo","Equipo"],["blog","Blog"],["contacto","Contacto"]];
+const NAV=[["inicio","Inicio"],["servicios","Servicios"],["casos","Casos"],["nosotros","Nosotros"],["equipo","Equipo"],["blog","Blog"],["contacto","Contacto"]];
 function useReveal(){React.useEffect(()=>{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -40px 0px"});const scan=()=>document.querySelectorAll(".mx-reveal:not(.in)").forEach(el=>io.observe(el));scan();const mo=new MutationObserver(scan);mo.observe(document.body,{childList:true,subtree:true});return()=>{io.disconnect();mo.disconnect()}},[])}
 function go(id){const el=document.getElementById(id);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-60,behavior:"smooth"})}
 function Header({onConsult,onSearch,active}){
