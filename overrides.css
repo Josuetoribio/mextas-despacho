@@ -1,0 +1,21 @@
+/* Ajustes de la versión publicada en mextas.com/despacho/.
+   El export original no se toca: el build enlaza este archivo al final del <head>.
+   Objetivo: que ninguna sección provoque scroll horizontal en móviles (320–414 px). */
+
+@media (max-width: 600px) {
+  /* «Áreas de práctica», blog y contacto fijan sus columnas en línea y no pasaban a una sola
+     columna, como ya pretende la regla .mx-split del kit para pantallas estrechas. */
+  .mx-split { grid-template-columns: minmax(0, 1fr) !important; }
+  /* «Por qué MEXTAS»: 12 columnas con 32 px de separación no caben en un móvil. */
+  .mx-why { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Pie: el formulario del boletín no cabía en dos columnas. */
+@media (max-width: 420px) {
+  .mx-footer { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Botón «Explorar todos los servicios»: puede ocupar dos líneas en pantallas muy estrechas. */
+@media (max-width: 360px) {
+  [style*="position: sticky"] button { white-space: normal !important; text-align: center; }
+}
